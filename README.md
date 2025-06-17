@@ -1,4 +1,4 @@
-# Laporan Proyek Machine Learning - Abdul Mughni
+## Laporan Proyek Machine Learning - Abdul Mughni
 
 ## Domain Proyek
 Industri perbukuan merupakan salah satu sektor penting dalam dunia literasi dan pendidikan. Dengan jutaan judul buku yang tersedia dari berbagai genre dan penulis, pembaca seringkali kesulitan menemukan buku yang sesuai dengan minat dan preferensi mereka. Proyek ini bertujuan untuk membangun sistem rekomendasi buku berbasis data menggunakan pendekatan Content-Based Filtering (CBF).
@@ -23,11 +23,7 @@ Bagaimana membantu pengguna menemukan buku baru yang mungkin mereka sukai, meski
 Membangun sistem prediksi rating berdasarkan fitur buku (Content-Based Filtering/CBF) dan interaksi pengguna (Collaborative Filtering/CF).
 Menyajikan rekomendasi top-N berdasarkan prediksi terbaik.
 
-### 🛠️ Solution Statement
- Content-Based Filtering (CBF): berdasarkan fitur seperti Judul Buku, Penulis, dan Penerbit..
 ---
-
-
 
 ## 📊 Data Understanding & Exploratory Data Analysis
 
@@ -55,16 +51,8 @@ Di bawah ini adalah pemeriksaan jumlah data duplikat untuk masing-masing dataset
 ![image](https://github.com/user-attachments/assets/dcba8b4e-029b-49f2-aa52-e009a10fb763)
 
 
-### 4. Deteksi Outlier Menggunakan Boxpl
-Untuk mengidentifikasi adanya outlier dalam data numerik, dilakukan visualisasi boxplot pada masing-masing dataframe: df_ratings, df_books, dan df_user.
 
-Langkah ini penting dilakukan sebelum melakukan normalisasi atau proses machine learning lainnya, karena outlier dapat mempengaruhi performa model secara signifikan. Dengan visualisasi ini, pengguna dapat dengan mudah mengamati distribusi data dan menentukan perlakuan selanjutnya terhadap outlier
-
-
-![image](https://github.com/user-attachments/assets/8abece25-65e2-4bc1-b284-4b1489d5775a)
-
-
-### 5. Visualisasi Distribusi Fitur Numerik
+### 4. Visualisasi Distribusi Fitur Numerik
 Bagian ini bertujuan untuk memvisualisasikan distribusi fitur numerik yang terdapat pada setiap dataset untuk membantu memahami data lebih baik.
 
 ![image](https://github.com/user-attachments/assets/276257ec-475a-42ee-a5ed-815e184c4860)
@@ -72,13 +60,13 @@ Bagian ini bertujuan untuk memvisualisasikan distribusi fitur numerik yang terda
 ![image](https://github.com/user-attachments/assets/66bef0a9-c392-4388-adf8-cd79628b425d)
 
 
-### 6. Visualisasi Pairplot untuk Fitur Numerik
+### 5. Visualisasi Pairplot untuk Fitur Numerik
 Bagian ini berfungsi untuk memvisualisasikan hubungan antar fitur numerik menggunakan pairplot. Pairplot memungkinkan kita untuk melihat distribusi dari setiap fitur dan korelasi antar fitur dalam dataset.
 
 ![image](https://github.com/user-attachments/assets/83b40ac3-e73c-4024-b17f-e0ec9da949fa)
 
 
-### 7. Visualisasi Heatmap Korelasi
+### 6. Visualisasi Heatmap Korelasi
 Bagian ini bertujuan untuk menampilkan heatmap korelasi antar fitur numerik dalam setiap dataset. Heatmap korelasi memungkinkan kita untuk dengan cepat mengidentifikasi hubungan antar variabel, dengan warna yang menunjukkan tingkat korelasi antara fitur-fitur tersebut.
 
 ![image](https://github.com/user-attachments/assets/7d25f35a-d03c-470a-a660-5bb3e8eeb114)
@@ -86,7 +74,7 @@ Bagian ini bertujuan untuk menampilkan heatmap korelasi antar fitur numerik dala
 ![image](https://github.com/user-attachments/assets/946136ca-d216-4648-b5a3-0ab92fdd4f9a)
 
 
-### 8. Visualisasi Distribusi Kategorikal
+### 7. Visualisasi Distribusi Kategorikal
 Bagian ini digunakan untuk menampilkan distribusi fitur kategorikal pada setiap dataset. Visualisasi yang digunakan berupa countplot dan barplot, untuk memberikan gambaran mengenai seberapa banyak setiap kategori muncul dalam dataset.
 
 ![image](https://github.com/user-attachments/assets/1a7f8463-8c43-447c-b95d-6f1c39f8e6ba)
@@ -117,7 +105,7 @@ Bagian ini digunakan untuk menampilkan distribusi fitur kategorikal pada setiap 
 - Memberikan wawasan untuk memperbaiki data seperti kategori yang jarang muncul (outlier kategorikal), atau memilih fitur kategorikal mana yang penting untuk model.
 
 
-### 9. Statistik Deskriptif Fitur Kategorikal
+### 8. Statistik Deskriptif Fitur Kategorikal
 Bagian ini akan menampilkan statistik deskriptif untuk kolom-kolom bertipe kategorikal (tipe data object) di setiap dataset. Statistik deskriptif ini memberikan informasi tentang distribusi nilai dalam kolom kategorikal.
 
 ![image](https://github.com/user-attachments/assets/3cb2119f-ea86-476e-8f28-6b52b0efff7d)
@@ -145,7 +133,7 @@ Bagian ini akan menampilkan statistik deskriptif untuk kolom-kolom bertipe kateg
 - Dapat menunjukkan apakah data tersebut memiliki banyak kategori yang unik atau apakah ada kategori yang sangat jarang, yang penting untuk desain model rekomendasi.
 
 
-### 10. Distribusi Data Berdasarkan Lokasi, dan Age
+### 9. Distribusi Data Berdasarkan Lokasi, dan Age
 Bagian ini menampilkan informasi terkait lokasi pengguna, dan Age
 
 ![image](https://github.com/user-attachments/assets/c05dc6b6-1a76-4553-8ed2-f4a909c7f347)
@@ -172,7 +160,7 @@ Bagian ini menampilkan informasi terkait lokasi pengguna, dan Age
 
 
 
-## 11. Visualisasi Analisis Distribusi Penulis Buku
+## 10. Visualisasi Analisis Distribusi Penulis Buku
 
 Dengan menampilkan 20 penulis teratas berdasarkan jumlah buku yang mereka miliki, kita dapat melihat dominasi penulis tertentu. Grafik batang ini memberikan gambaran mengenai penulis-penulis populer atau yang paling banyak terwakili dalam koleksi buku yang ada.
 
@@ -187,7 +175,7 @@ Dominasi penulis tertentu dapat mempengaruhi proses sistem rekomendasi berbasis 
 Selain itu, distribusi yang tidak seimbang ini juga menunjukkan pentingnya mempertimbangkan representasi penulis dalam dataset agar sistem rekomendasi tidak bias terhadap penulis mayoritas. Hal ini krusial untuk memastikan sistem dapat memberikan rekomendasi yang bervariasi dan adil kepada pengguna.
 
 
-## 12. Analisis Part-of-Speech (POS) pada Judul Buku
+## 11. Analisis Part-of-Speech (POS) pada Judul Buku
 Untuk mendalami lebih jauh karakteristik dari judul buku, dilakukan analisis Part-of-Speech (POS) menggunakan pustaka TextBlob. POS Tagging bertujuan untuk mengidentifikasi jenis kata seperti kata benda (noun), kata sifat (adjective), kata kerja (verb), dan lainnya dari kumpulan judul buku.
 
 Dengan menggabungkan semua judul buku menjadi satu teks, kita dapat menganalisis frekuensi masing-masing jenis kata yang muncul. Visualisasi ini akan memberikan gambaran mengenai struktur umum penamaan judul buku, misalnya apakah lebih banyak menggunakan kata benda atau kata sifat.
@@ -198,7 +186,7 @@ Informasi POS ini juga bisa memberikan insight tambahan jika ingin mengembangkan
 
 
 
-### 13. Visualisasi Bigram Menggunakan TF-IDF pada Judul Buku
+### 12. Visualisasi Bigram Menggunakan TF-IDF pada Judul Buku
 Pada bagian ini, dilakukan analisis terhadap bigram, yaitu kombinasi dua kata yang muncul secara berurutan dalam judul buku. Untuk menghitung bobot kemunculan bigram, digunakan pendekatan TF-IDF (Term Frequency-Inverse Document Frequency) yang tidak hanya mempertimbangkan frekuensi kata, tetapi juga signifikansi relatifnya di seluruh kumpulan judul buku.
 
 Tujuan dari analisis ini adalah untuk mengidentifikasi pasangan kata yang paling sering dan paling penting dalam judul-judul buku. Hal ini dapat memberikan insight tentang pola penamaan buku atau genre yang dominan, misalnya apakah sering muncul frasa seperti "harlequin presents", "harlequin romance", atau "special edition".
@@ -208,7 +196,7 @@ Visualisasi ini membantu kita memahami struktur frasa yang dominan dalam judul b
 ![image](https://github.com/user-attachments/assets/9afeeba7-ae9d-4c1e-a30f-13316a62e6d9)
 
 
-### 14. Visualisasi Trigram Menggunakan TF-IDF pada Judul Buku
+### 13. Visualisasi Trigram Menggunakan TF-IDF pada Judul Buku
 Setelah analisis bigram, dilakukan pula analisis terhadap trigram, yaitu kombinasi tiga kata yang muncul berurutan dalam judul buku. Seperti sebelumnya, metode TF-IDF digunakan untuk mengukur pentingnya trigram yang muncul, bukan hanya berdasarkan frekuensinya tetapi juga berdasarkan tingkat kekhususan trigram di seluruh data.
 
 Trigram dapat memberikan informasi yang lebih kontekstual dibandingkan unigram (satu kata) atau bigram, karena tiga kata berturut-turut cenderung membentuk frasa yang lebih bermakna atau spesifik. Misalnya, frasa seperti "silhouette special edition" atau "harlequin american romance" bisa muncul sebagai trigram yang signifikan.
@@ -242,7 +230,14 @@ Langkah ini memastikan bahwa setiap entri dalam dataset bersifat unik dan valid 
 ![image](https://github.com/user-attachments/assets/cd9029b3-6ce1-478b-b1a6-ae1714bc7407)
 
 
-### 4. Menghapus Outlier Menggunakan Metode IQR
+
+### 4. Deteksi Outlier Menggunakan Boxpl
+Untuk mengidentifikasi adanya outlier dalam data numerik, dilakukan visualisasi boxplot pada masing-masing dataframe: df_ratings, df_books, dan df_user.
+
+![image](https://github.com/user-attachments/assets/8abece25-65e2-4bc1-b284-4b1489d5775a)
+
+
+### 5. Menghapus Outlier Menggunakan Metode IQR
 Pada bagian ini, dilakukan pembersihan data dari nilai-nilai ekstrem (outlier) menggunakan metode Interquartile Range (IQR). Outlier dapat mempengaruhi hasil analisis dan performa model. Oleh karena itu, penting untuk menghapusnya.
 
 Fungsi remove_outliers_iqr digunakan untuk memfilter data berdasarkan nilai Q1 (kuartil bawah) dan Q3 (kuartil atas), dengan batas toleransi sebesar 1.5 * IQR. Fungsi ini diterapkan ke seluruh kolom numerik dari beberapa dataset, seperti df_users, df_ratings, dan df_books. Sebelum dan sesudah proses, ukuran dataset dibandingkan untuk mengetahui seberapa banyak data yang terdeteksi sebagai outlier dan dihapus.
@@ -250,7 +245,7 @@ Fungsi remove_outliers_iqr digunakan untuk memfilter data berdasarkan nilai Q1 (
 ![image](https://github.com/user-attachments/assets/2a71b6a3-cdba-4b67-86da-e81155f85e3f)
 
 
-### 5. Visualisasi Boxplot setelah Penghapusan Outlier
+### 6. Visualisasi Boxplot setelah Penghapusan Outlier
 Pada tahap ini, dilakukan visualisasi menggunakan boxplot untuk masing-masing dataset (Users, Ratings, dan books). Boxplot digunakan untuk:
 - Melihat distribusi data numerik
 - Mengidentifikasi outlier secara visual
@@ -259,6 +254,32 @@ Pada tahap ini, dilakukan visualisasi menggunakan boxplot untuk masing-masing da
 Setiap grafik menampilkan kolom-kolom numerik dari masing-masing DataFrame. Proses ini membantu dalam validasi apakah metode penghapusan outlier sebelumnya telah bekerja secara efektif.
 
 ![image](https://github.com/user-attachments/assets/bce3055f-bf00-42c7-9f30-137d87e645d1)
+
+
+### 7. Penggabungan Fitur Konten
+Pada tahap ini, dilakukan pembersihan dan persiapan data buku (df_books). Kolom-kolom penting seperti ISBN, Book-Title, Book-Author, dan Publisher dipilih, dan nilai-nilai yang hilang (NaN) diisi dengan string kosong ("") untuk memastikan semua entri siap diproses.
+
+Selanjutnya, metadata buku dari kolom Book-Title, Book-Author, dan Publisher digabungkan menjadi satu fitur teks baru bernama metadata. Penggabungan ini dilakukan dengan menambahkan spasi di antara setiap elemen untuk memastikan teks dapat diproses dengan baik dalam analisis TF-IDF.
+
+Fitur metadata yang baru ini akan digunakan untuk membentuk representasi konten buku, yang nantinya akan diproses menggunakan TF-IDF dalam metode Content-Based Filtering. Ini penting untuk mengidentifikasi kata kunci atau frasa penting dari buku yang akan digunakan untuk merekomendasikan buku lain yang serupa.
+
+![image](https://github.com/user-attachments/assets/2f86de77-ef45-4636-b164-2ad65a0a9511)
+
+
+### 8. Ekstraksi Fitur dengan TF-IDF
+TF-IDF (Term Frequency–Inverse Document Frequency) digunakan untuk mengubah data teks (combined_features) menjadi representasi numerik. Teknik ini menekankan kata-kata yang penting dan mengurangi bobot kata umum (stop words).
+
+![image](https://github.com/user-attachments/assets/a31e11b2-06b6-4869-90bd-a0df3902bbb5)
+
+
+### 9. Mapping Judul Buku ke Indeks
+Kode ini membuat sebuah Series bernama indices yang berfungsi untuk memetakan judul buku (Book-Title) ke indeks barisnya di df_books_clean (dataset buku yang sudah dibersihkan).
+
+Mapping ini penting untuk mengambil indeks buku tertentu berdasarkan judulnya saat melakukan pencarian rekomendasi. Fungsi drop_duplicates() digunakan untuk memastikan bahwa tidak ada judul buku yang terduplikasi dalam pemetaan ini, sehingga setiap judul buku memiliki indeks yang unik.
+
+![image](https://github.com/user-attachments/assets/3ceb62d3-3021-4613-93b8-57e8d57fd523)
+
+
 
 ---
 
@@ -269,23 +290,7 @@ Pada tahap Modeling, dilakukan pembangunan sistem rekomendasi yang bertujuan unt
 ## Content-Based Filtering (CBF)
 
 
-### 1. Penggabungan Fitur Konten
-Pada tahap ini, dilakukan pembersihan dan persiapan data buku (df_books). Kolom-kolom penting seperti ISBN, Book-Title, Book-Author, dan Publisher dipilih, dan nilai-nilai yang hilang (NaN) diisi dengan string kosong ("") untuk memastikan semua entri siap diproses.
-
-Selanjutnya, metadata buku dari kolom Book-Title, Book-Author, dan Publisher digabungkan menjadi satu fitur teks baru bernama metadata. Penggabungan ini dilakukan dengan menambahkan spasi di antara setiap elemen untuk memastikan teks dapat diproses dengan baik dalam analisis TF-IDF.
-
-Fitur metadata yang baru ini akan digunakan untuk membentuk representasi konten buku, yang nantinya akan diproses menggunakan TF-IDF dalam metode Content-Based Filtering. Ini penting untuk mengidentifikasi kata kunci atau frasa penting dari buku yang akan digunakan untuk merekomendasikan buku lain yang serupa.
-
-![image](https://github.com/user-attachments/assets/2f86de77-ef45-4636-b164-2ad65a0a9511)
-
-
-### 2. Ekstraksi Fitur dengan TF-IDF
-TF-IDF (Term Frequency–Inverse Document Frequency) digunakan untuk mengubah data teks (combined_features) menjadi representasi numerik. Teknik ini menekankan kata-kata yang penting dan mengurangi bobot kata umum (stop words).
-
-![image](https://github.com/user-attachments/assets/a31e11b2-06b6-4869-90bd-a0df3902bbb5)
-
-
-### 3. Perhitungan Cosine Similarity
+### 1. Perhitungan Cosine Similarity
 Cosine Similarity digunakan untuk mengukur tingkat kemiripan antar buku berdasarkan representasi vektor dari TF-IDF. Representasi vektor ini berasal dari fitur metadata yang telah kita buat sebelumnya (gabungan Book-Title, Book-Author, Publisher).
 
 Nilai kemiripan ini disusun dalam bentuk matriks, sehingga kita dapat melihat seberapa mirip satu buku dengan buku lainnya.
@@ -295,15 +300,7 @@ Hasilnya disimpan dalam model_knn, yang akan menjadi dasar untuk sistem rekomend
 ![image](https://github.com/user-attachments/assets/32b5598e-2f29-4396-ab58-012b92bc80de)
 
 
-### 4. Mapping Judul Buku ke Indeks
-Kode ini membuat sebuah Series bernama indices yang berfungsi untuk memetakan judul buku (Book-Title) ke indeks barisnya di df_books_clean (dataset buku yang sudah dibersihkan).
-
-Mapping ini penting untuk mengambil indeks buku tertentu berdasarkan judulnya saat melakukan pencarian rekomendasi. Fungsi drop_duplicates() digunakan untuk memastikan bahwa tidak ada judul buku yang terduplikasi dalam pemetaan ini, sehingga setiap judul buku memiliki indeks yang unik.
-
-![image](https://github.com/user-attachments/assets/3ceb62d3-3021-4613-93b8-57e8d57fd523)
-
-
-### 5. Fungsi Rekomendasi Buku
+### 2. Fungsi Rekomendasi Buku
 Fungsi get_recommendations digunakan untuk memberikan rekomendasi buku yang mirip dengan judul buku yang diberikan sebagai input. Prosesnya meliputi:
 
 - Pengecekan Ketersediaan: Memeriksa apakah judul buku yang dimasukkan (input) ada dalam data. Jika tidak ada, fungsi akan memberikan pesan bahwa buku tidak ditemukan.
@@ -315,7 +312,7 @@ Fungsi get_recommendations digunakan untuk memberikan rekomendasi buku yang miri
 ![image](https://github.com/user-attachments/assets/c12cbeca-75ae-4527-9b25-837b2811a026)
 
 
-### 6. Contoh Penggunaan Fungsi Rekomendasi
+### 3. Contoh Penggunaan Fungsi Rekomendasi
 Contoh berikut menunjukkan cara memanggil fungsi get_recommendations dengan memasukkan judul buku, misalnya "Harry Potter and the Chamber of Secrets". Fungsi akan menampilkan daftar buku lain yang memiliki kemiripan konten berdasarkan judul, penulis, dan penerbit, menggunakan metode Content-Based Filtering (CBF).
 
 Ini akan memberikan gambaran bagaimana sistem merekomendasikan buku-buku yang serupa kepada pengguna berdasarkan karakteristik buku yang mereka minati.
@@ -392,6 +389,6 @@ Secara keseluruhan, model CBF menunjukkan performa yang akurat dan relevan untuk
 
 ### 📁 Struktur Berkas
 
-- Notebook_Prediksi_Rating_FINAL_ALLDATA_Preprocessing.ipynb  
-- Notebook_Prediksi_Rating_FINAL_ALLDATA_Preprocessing.py  
+- Submission_Akhir_Model_Sistem_Rekomendasi.ipynb  
+- submission_akhir_model_sistem_rekomendasi.py 
 - README.md
