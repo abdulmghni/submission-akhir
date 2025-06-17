@@ -207,26 +207,6 @@ Setiap grafik menampilkan kolom-kolom numerik dari masing-masing DataFrame. Pros
 
 ![image](https://github.com/user-attachments/assets/bce3055f-bf00-42c7-9f30-137d87e645d1)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
 ---
 
 ### 🤖 Modeling & Results
@@ -257,7 +237,8 @@ Dengan menggabungkan semua judul buku menjadi satu teks, kita dapat menganalisis
 
 Informasi POS ini juga bisa memberikan insight tambahan jika ingin mengembangkan model rekomendasi yang mempertimbangkan karakter linguistik dari judul buku.
 
-![image](https://github.com/user-attachments/assets/24dfb455-a934-4fc2-8f17-8062fbc09d5c)
+![image](https://github.com/user-attachments/assets/8ae07290-bed1-43de-839c-3fd5f823a318)
+
 
 
 # 3. Visualisasi Bigram Menggunakan TF-IDF pada Judul Buku
