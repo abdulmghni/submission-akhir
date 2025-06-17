@@ -1,25 +1,29 @@
-# submission-akhir
+### Laporan Proyek Machine Learning - Abdul Mughni
 
+# Domain Proyek
+Industri perbukuan merupakan salah satu sektor penting dalam dunia literasi dan pendidikan. Dengan jutaan judul buku yang tersedia dari berbagai genre dan penulis, pembaca seringkali kesulitan menemukan buku yang sesuai dengan minat dan preferensi mereka. Proyek ini bertujuan untuk membangun sistem rekomendasi buku berbasis data menggunakan pendekatan Content-Based Filtering (CBF).
 
-🎓 Proyek Sistem Rekomendasi Buku - Dicoding
+Masalah ini penting untuk diselesaikan agar dapat membantu pembaca dalam menemukan buku yang sesuai dan meningkatkan pengalaman membaca mereka. Di sisi lain, sistem ini juga dapat membantu penerbit, penulis, dan toko buku untuk memahami tren preferensi pembaca. Dalam era informasi yang melimpah, pembaca seringkali menghadapi overload informasi, sehingga sistem rekomendasi cerdas diperlukan untuk menyaring dan memperkenalkan buku-buku baru atau penulis yang kurang dikenal yang memiliki potensi menarik bagi segmen pembaca tertentu.
+
+## 🎓 Proyek Sistem Rekomendasi Buku - Dicoding
 Project Overview
 Industri penerbitan dan literasi terus berkembang, dengan semakin banyaknya judul buku yang tersedia bagi pembaca. Dalam era digital, pembaca semakin mengandalkan sistem rekomendasi untuk menemukan buku baru yang sesuai dengan minat dan preferensi mereka.
 
 Proyek ini bertujuan membangun sistem rekomendasi buku berbasis machine learning yang mampu memprediksi rating dan memberikan saran buku yang relevan.
 
-📚 Referensi
+## 📚 Referensi
 G. Adomavicius, A. Tuzhilin, “Toward the Next Generation of Recommender Systems: A Survey,” IEEE TKDE, 2005.
 D. Jannach, et al., “Recommender Systems: Challenges, Insights, and Research Opportunities,” ACM TiiS, 2021.
 
-📌 Business Understanding
+## 📌 Business Understanding
 🔍 Problem Statements
 Bagaimana membantu pengguna menemukan buku baru yang mungkin mereka sukai, meskipun mereka belum pernah memberikan rating atau interaksi sebelumnya?
 
-🌟 Goals
+## 🌟 Goals
 Membangun sistem prediksi rating berdasarkan fitur buku (Content-Based Filtering/CBF) dan interaksi pengguna (Collaborative Filtering/CF).
 Menyajikan rekomendasi top-N berdasarkan prediksi terbaik.
 
-🛠️ Solution Statement
+## 🛠️ Solution Statement
  Content-Based Filtering (CBF): berdasarkan fitur seperti Judul Buku, Penulis, dan Penerbit..
 ---
 
