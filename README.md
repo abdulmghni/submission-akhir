@@ -303,9 +303,11 @@ Pada tahap ini dilakukan penggabungan informasi buku dari beberapa kolom menjadi
 
 - Proses ini dilakukan agar setiap buku dapat direpresentasikan sebagai sebuah dokumen teks yang kemudian dianalisis menggunakan metode ekstraksi fitur.
 
+![image](https://github.com/user-attachments/assets/2f86de77-ef45-4636-b164-2ad65a0a9511)
+
 Contoh hasil penggabungan:
 
-![image](https://github.com/user-attachments/assets/2f86de77-ef45-4636-b164-2ad65a0a9511)
+![image](https://github.com/user-attachments/assets/a4a53dcb-4d67-4589-b030-92ef87f8bfb9)
 
 Fitur ini akan digunakan sebagai dasar dalam ekstraksi TF-IDF pada tahap berikutnya.
 
