@@ -11,12 +11,12 @@ Industri penerbitan dan literasi terus berkembang, dengan semakin banyaknya judu
 
 Proyek ini bertujuan membangun sistem rekomendasi buku berbasis machine learning yang mampu memprediksi rating dan memberikan saran buku yang relevan.
 
-### 📚 Referensi
+## 📚 Referensi
 G. Adomavicius, A. Tuzhilin, “Toward the Next Generation of Recommender Systems: A Survey,” IEEE TKDE, 2005.
 D. Jannach, et al., “Recommender Systems: Challenges, Insights, and Research Opportunities,” ACM TiiS, 2021.
 
-### 📌 Business Understanding
-###🔍 Problem Statements
+## 📌 Business Understanding
+### 🔍 Problem Statements
 Bagaimana membantu pengguna menemukan buku baru yang mungkin mereka sukai, meskipun mereka belum pernah memberikan rating atau interaksi sebelumnya?
 
 ### 🌟 Goals
@@ -27,16 +27,47 @@ Menyajikan rekomendasi top-N berdasarkan prediksi terbaik.
 
 ## 📊 Data Understanding & Exploratory Data Analysis
 
-![image](https://github.com/user-attachments/assets/d8682654-32e1-4685-8c49-05b7000e63e5)
+### Dataset yang digunakan bersumber dari Kaggle: [Book Recommendation Dataset] https://www.kaggle.com/datasets/arashnic/book-recommendation-dataset?select=Books.csv
 
 ### 1. Informasi Umum Dataset
-Pada bagian ini ditampilkan informasi struktural dari setiap dataset, yaitu:
 
-df_users:   Dataset pengguna — menunjukkan jumlah entri (baris), tipe data setiap kolom, dan jumlah non-null values.
+![image](https://github.com/user-attachments/assets/d8682654-32e1-4685-8c49-05b7000e63e5)
 
-df_books:   Dataset tempat wisata — berisi data tentang judul buku, publiser, penulis dan  beserta ID dan genrenya.
+## A. Books Dataset
 
-df_ratings: Dataset rating  — mencakup informasi tentang rating yang diberikan pengguna untuk buku.
+### Jumlah Data:
+- Jumlah Baris: 271.360
+- Jumlah Kolom: 8
+  
+### Penjelasan Fitur:
+- ISBN: (String) International Standard Book Number, ID unik untuk setiap buku. Digunakan sebagai pengidentifikasi buku dan kunci untuk penggabungan data.
+- Book-Title: (String) Judul buku. Digunakan sebagai fitur konten utama dalam model CBF.
+- Book-Author: (String) Nama penulis buku. Digunakan sebagai fitur konten utama dalam model CBF.
+- Year-Of-Publication: (Integer) Tahun buku diterbitkan. Digunakan untuk analisis deskriptif, namun tidak secara langsung dalam fitur konten CBF tekstual.
+- Publisher: (String) Nama penerbit buku. Digunakan sebagai fitur konten utama dalam model CBF.
+- Image-URL-S, Image-URL-M, Image-URL-L: (String) URL gambar sampul buku dalam ukuran kecil, sedang, dan besar. Tidak digunakan dalam pemodelan CBF karena merupakan fitur non-tekstual/konten desk
+
+## B. Ratings Dataset
+
+### Jumlah Data:
+- Jumlah Baris: 271.360
+- Jumlah Kolom: 3
+
+### Penjelasan Fitur:
+- User-ID: (Integer) ID pengguna yang memberikan rating. Digunakan untuk mengidentifikasi pengguna yang berinteraksi.
+- ISBN: (String) ISBN buku yang diberi rating. Digunakan sebagai pengidentifikasi buku yang menerima rating.
+- Book-Rating: (Integer) Nilai rating yang diberikan oleh pengguna untuk buku tersebut (biasanya skala 0-10). Digunakan sebagai informasi kunci tentang preferensi pengguna, meskipun model CBF ini tidak secara - langsung memprediksi rating numerik, informasi ini penting untuk pemahaman data interaksi.
+
+## C. Users Dataset
+
+### Jumlah Data:
+- Jumlah Baris: 278.858
+- Jumlah Kolom: 3
+
+### Penjelasan Fitur:
+- User-ID: (Integer) ID unik untuk setiap pengguna. Digunakan sebagai pengidentifikasi pengguna.
+- Location: (String) Lokasi geografis (kota, negara) tempat tinggal pengguna. Digunakan untuk konteks demografi pengguna, namun tidak secara langsung dalam model CBF.
+- Age: (Float/Integer) Usia pengguna. Digunakan untuk analisis demografi; missing values mungkin perlu ditangani (misalnya, diisi dengan median atau dihapus, tergantung strategi Anda).
 
 
 ### 2. Pengecekan Missing Values
@@ -217,18 +248,21 @@ Dari dataset buku (df_books): Image-URL-S, Image-URL-M, Image-URL-L)
 
 
 ### 2. Penanganan Missing Values
-Untuk memastikan kualitas data, dilakukan pemeriksaan dan penghapusan nilai kosong (missing values) pada setiap dataset (df_user, df_rating, df_tourism, dan df_package). Proses ini dilakukan menggunakan fungsi dropna(), diikuti dengan pengecekan ulang untuk memastikan tidak ada nilai yang hilang tersisa.
+Berdasarkan hasil eksplorasi awal, ditemukan sejumlah nilai kosong pada beberapa kolom penting di dataset df_books. Untuk memastikan kualitas data:
+
+Pada kolom seperti Book-Author dan Publisher, nilai kosong diisi dengan string kosong ("") agar proses ekstraksi teks tidak terganggu.
+
+Untuk dataset df_users dan df_ratings, nilai kosong yang ditemukan pada kolom kritikal dihapus menggunakan dropna() karena tidak dapat diimputasi secara logis tanpa risiko bias.
 
 ![image](https://github.com/user-attachments/assets/f99b9c89-d943-4bb9-baec-0508fe9f8add)
 
 
-### 3. penghapusan data duplikat
+### 3. pengecekan data duplikat
 Pada tahap awal preprocessing, dilakukan penghapusan data yang bersifat duplikat pada seluruh dataframe yang digunakan, yaitu: df_users, df_ratings, dan df_books
 
 Langkah ini memastikan bahwa setiap entri dalam dataset bersifat unik dan valid sebelum dilakukan proses lebih lanjut seperti penanganan nilai yang hilang atau pengkodean data. Setelah penghapusan, dilakukan pengecekan ulang 
 
 ![image](https://github.com/user-attachments/assets/cd9029b3-6ce1-478b-b1a6-ae1714bc7407)
-
 
 
 ### 4. Deteksi Outlier Menggunakan Boxpl
@@ -238,9 +272,13 @@ Untuk mengidentifikasi adanya outlier dalam data numerik, dilakukan visualisasi 
 
 
 ### 5. Menghapus Outlier Menggunakan Metode IQR
-Pada bagian ini, dilakukan pembersihan data dari nilai-nilai ekstrem (outlier) menggunakan metode Interquartile Range (IQR). Outlier dapat mempengaruhi hasil analisis dan performa model. Oleh karena itu, penting untuk menghapusnya.
+Pada bagian ini, Dari hasil visualisasi dan analisis statistik, ditemukan nilai-nilai ekstrem (outlier) terutama pada kolom numerik seperti:
 
-Fungsi remove_outliers_iqr digunakan untuk memfilter data berdasarkan nilai Q1 (kuartil bawah) dan Q3 (kuartil atas), dengan batas toleransi sebesar 1.5 * IQR. Fungsi ini diterapkan ke seluruh kolom numerik dari beberapa dataset, seperti df_users, df_ratings, dan df_books. Sebelum dan sesudah proses, ukuran dataset dibandingkan untuk mengetahui seberapa banyak data yang terdeteksi sebagai outlier dan dihapus.
+Age pada df_users
+
+Book-Rating pada df_ratings
+
+Pembersihan dilakukan menggunakan metode Interquartile Range (IQR) untuk memastikan distribusi data menjadi lebih normal dan tidak terpengaruh oleh nilai-nilai ekstrem yang dapat menurunkan performa model.
 
 ![image](https://github.com/user-attachments/assets/2a71b6a3-cdba-4b67-86da-e81155f85e3f)
 
@@ -257,25 +295,35 @@ Setiap grafik menampilkan kolom-kolom numerik dari masing-masing DataFrame. Pros
 
 
 ### 7. Penggabungan Fitur Konten
-Pada tahap ini, dilakukan pembersihan dan persiapan data buku (df_books). Kolom-kolom penting seperti ISBN, Book-Title, Book-Author, dan Publisher dipilih, dan nilai-nilai yang hilang (NaN) diisi dengan string kosong ("") untuk memastikan semua entri siap diproses.
+Pada tahap ini dilakukan penggabungan informasi buku dari beberapa kolom menjadi satu fitur representatif:
 
-Selanjutnya, metadata buku dari kolom Book-Title, Book-Author, dan Publisher digabungkan menjadi satu fitur teks baru bernama metadata. Penggabungan ini dilakukan dengan menambahkan spasi di antara setiap elemen untuk memastikan teks dapat diproses dengan baik dalam analisis TF-IDF.
+- Kolom Book-Title, Book-Author, dan Publisher digabungkan menjadi kolom baru bernama metadata.
 
-Fitur metadata yang baru ini akan digunakan untuk membentuk representasi konten buku, yang nantinya akan diproses menggunakan TF-IDF dalam metode Content-Based Filtering. Ini penting untuk mengidentifikasi kata kunci atau frasa penting dari buku yang akan digunakan untuk merekomendasikan buku lain yang serupa.
+- Nilai kosong sebelumnya telah diisi sehingga proses penggabungan tidak menghasilkan nilai yang tidak valid.
+
+- Proses ini dilakukan agar setiap buku dapat direpresentasikan sebagai sebuah dokumen teks yang kemudian dianalisis menggunakan metode ekstraksi fitur.
+
+Contoh hasil penggabungan:
 
 ![image](https://github.com/user-attachments/assets/2f86de77-ef45-4636-b164-2ad65a0a9511)
 
+Fitur ini akan digunakan sebagai dasar dalam ekstraksi TF-IDF pada tahap berikutnya.
+
 
 ### 8. Ekstraksi Fitur dengan TF-IDF
-TF-IDF (Term Frequency–Inverse Document Frequency) digunakan untuk mengubah data teks (combined_features) menjadi representasi numerik. Teknik ini menekankan kata-kata yang penting dan mengurangi bobot kata umum (stop words).
+Fitur metadata yang telah dibentuk dikonversi ke dalam bentuk numerik menggunakan teknik TF-IDF (Term Frequency-Inverse Document Frequency). Proses ini mengubah teks menjadi vektor angka yang mencerminkan pentingnya kata-kata dalam konteks seluruh korpus buku.
+
+- Stopwords dihapus untuk meningkatkan akurasi representasi.
+
+- TF-IDF vectorizer menghasilkan matriks fitur yang akan digunakan dalam perhitungan kemiripan antar buku.
 
 ![image](https://github.com/user-attachments/assets/a31e11b2-06b6-4869-90bd-a0df3902bbb5)
 
 
 ### 9. Mapping Judul Buku ke Indeks
-Kode ini membuat sebuah Series bernama indices yang berfungsi untuk memetakan judul buku (Book-Title) ke indeks barisnya di df_books_clean (dataset buku yang sudah dibersihkan).
+Untuk memudahkan pencarian dan rekomendasi berdasarkan judul buku, dibuat struktur data indices yang memetakan judul buku unik ke indeks barisnya dalam df_books_clean.
 
-Mapping ini penting untuk mengambil indeks buku tertentu berdasarkan judulnya saat melakukan pencarian rekomendasi. Fungsi drop_duplicates() digunakan untuk memastikan bahwa tidak ada judul buku yang terduplikasi dalam pemetaan ini, sehingga setiap judul buku memiliki indeks yang unik.
+Fungsi drop_duplicates() diterapkan sebelumnya agar setiap judul buku memiliki indeks yang unik dan tidak terjadi benturan saat proses rekomendasi.
 
 ![image](https://github.com/user-attachments/assets/3ceb62d3-3021-4613-93b8-57e8d57fd523)
 
