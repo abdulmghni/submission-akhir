@@ -257,8 +257,8 @@ Untuk dataset df_users dan df_ratings, nilai kosong yang ditemukan pada kolom kr
 ![image](https://github.com/user-attachments/assets/f99b9c89-d943-4bb9-baec-0508fe9f8add)
 
 
-### 3. pengecekan data duplikat
-Pada tahap awal preprocessing, dilakukan penghapusan data yang bersifat duplikat pada seluruh dataframe yang digunakan, yaitu: df_users, df_ratings, dan df_books
+### 3. Penghapusan data duplikat
+Dilakukan penghapusan data yang bersifat duplikat pada seluruh dataframe yang digunakan, yaitu: df_users, df_ratings, dan df_books
 
 Langkah ini memastikan bahwa setiap entri dalam dataset bersifat unik dan valid sebelum dilakukan proses lebih lanjut seperti penanganan nilai yang hilang atau pengkodean data. Setelah penghapusan, dilakukan pengecekan ulang 
 
@@ -295,40 +295,52 @@ Setiap grafik menampilkan kolom-kolom numerik dari masing-masing DataFrame. Pros
 
 
 ### 7. Penggabungan Fitur Konten
-Pada tahap ini dilakukan penggabungan informasi buku dari beberapa kolom menjadi satu fitur representatif:
+Setelah data dibersihkan, langkah selanjutnya adalah membentuk fitur gabungan yang akan digunakan sebagai input untuk sistem rekomendasi berbasis konten.
+Tujuan: Menggabungkan informasi deskriptif tentang buku (judul, penulis, dan penerbit) ke dalam satu fitur teks, agar dapat diolah sebagai dokumen dalam ekstraksi fitur teks.
 
-- Kolom Book-Title, Book-Author, dan Publisher digabungkan menjadi kolom baru bernama metadata.
-
-- Nilai kosong sebelumnya telah diisi sehingga proses penggabungan tidak menghasilkan nilai yang tidak valid.
-
-- Proses ini dilakukan agar setiap buku dapat direpresentasikan sebagai sebuah dokumen teks yang kemudian dianalisis menggunakan metode ekstraksi fitur.
-
+Langkah-langkah:
+- Dataset df_books telah difilter untuk hanya menyertakan kolom penting:
+ISBN, Book-Title, Book-Author, dan Publisher.
+- Nilai kosong (missing values) pada kolom-kolom tersebut sebelumnya telah diganti dengan string kosong ("") agar proses penggabungan tidak gagal.
+- Penggabungan dilakukan menggunakan + operator dengan spasi sebagai pemisah:
+  
 ![image](https://github.com/user-attachments/assets/2f86de77-ef45-4636-b164-2ad65a0a9511)
 
 Contoh hasil penggabungan:
 
 ![image](https://github.com/user-attachments/assets/a4a53dcb-4d67-4589-b030-92ef87f8bfb9)
 
-Fitur ini akan digunakan sebagai dasar dalam ekstraksi TF-IDF pada tahap berikutnya.
+Fitur metadata ini akan menjadi dasar untuk menghitung kemiripan antar buku menggunakan metode pemrosesan teks (TF-IDF).
 
 
 ### 8. Ekstraksi Fitur dengan TF-IDF
-Fitur metadata yang telah dibentuk dikonversi ke dalam bentuk numerik menggunakan teknik TF-IDF (Term Frequency-Inverse Document Frequency). Proses ini mengubah teks menjadi vektor angka yang mencerminkan pentingnya kata-kata dalam konteks seluruh korpus buku.
+Setelah kolom metadata terbentuk, dilakukan konversi dari teks ke bentuk numerik yang bisa dianalisis oleh mesin.
+Tujuan: Mengubah teks gabungan dari metadata menjadi representasi vektor numerik berdasarkan frekuensi kata yang bersifat unik pada setiap dokumen (buku).
 
-- Stopwords dihapus untuk meningkatkan akurasi representasi.
-
-- TF-IDF vectorizer menghasilkan matriks fitur yang akan digunakan dalam perhitungan kemiripan antar buku.
-
+Langkah-langkah teknis:
+- Menggunakan TfidfVectorizer dari sklearn.feature_extraction.text.
+- Parameter yang digunakan:
+  
 ![image](https://github.com/user-attachments/assets/a31e11b2-06b6-4869-90bd-a0df3902bbb5)
+
+- Stop words bahasa Inggris dihapus secara otomatis untuk menghindari gangguan dari kata-kata umum seperti “the”, “and”, “of”.
+
+- Output tfidf_matrix berbentuk matriks sparse (jumlah baris = jumlah buku, jumlah kolom = jumlah kata unik) yang menyimpan bobot penting dari setiap kata di setiap buku.
+
+Kegunaan:
+- Matriks ini menjadi dasar untuk menghitung kemiripan antar buku menggunakan cosine similarity, yang akan digunakan dalam sistem rekomendasi berbasis konten.
 
 
 ### 9. Mapping Judul Buku ke Indeks
-Untuk memudahkan pencarian dan rekomendasi berdasarkan judul buku, dibuat struktur data indices yang memetakan judul buku unik ke indeks barisnya dalam df_books_clean.
-
-Fungsi drop_duplicates() diterapkan sebelumnya agar setiap judul buku memiliki indeks yang unik dan tidak terjadi benturan saat proses rekomendasi.
+Agar sistem dapat mengambil indeks dari buku berdasarkan judul yang diberikan pengguna, dibuat pemetaan judul → indeks.
 
 ![image](https://github.com/user-attachments/assets/3ceb62d3-3021-4613-93b8-57e8d57fd523)
 
+Kegunaan:
+
+- Memungkinkan pencarian cepat indeks berdasarkan input judul buku dari pengguna.
+
+- Indeks tersebut kemudian digunakan untuk mengambil baris dari tfidf_matrix dan menghitung kemiripan antar buku menggunakan cosine similarity.
 
 
 ---
